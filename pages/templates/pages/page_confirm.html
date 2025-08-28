@@ -1,0 +1,6 @@
+{% extends 'games/base.html' %}
+{% block content %}
+<h2>Confirmar borrado</h2>
+<p>¿Seguro que querés borrar "{{ object }}"?</p>
+<form method="post">{% csrf_token %}<button type="submit">Sí, borrar</button></form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'games/base.html' %}
+
+{% block title %}Listado de Juegos{% endblock %}
+
+{% block content %}
+<h2>Listado de Juegos</h2>
+
+<form method="get" action="{% url 'list_games' %}">
+    <input type="text" name="q" placeholder="Buscar por título..." value="{{ query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<ul>
+    {% for game in games %}
+    <li style="margin-bottom:1rem;">
+        {% if game.image %}
+            <img src="{{ game.image.url }}" alt="{{ game.title }}" style="max-width:120px; display:inline-block; vertical-align:middle; margin-right:10px;">
+        {% endif %}
+        <div style="display:inline-block; vertical-align:middle;">
+            <strong>{{ game.title }}</strong><br>
+            {{ game.genre }} — {{ game.developer.name }} — {{ game.platform.name }}<br>
+            <a href="{% url 'game_detail' game.pk %}">Leer más</a> |
+            <a href="{% url 'edit_game' game.pk %}">Editar</a> |
+            <a href="{% url 'delete_game' game.pk %}" onclick="return confirm('¿Seguro que deseas borrar este juego?');">Borrar</a>
+        </div>
+    </li>
+    {% empty %}
+    <li>No hay juegos registrados.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Message</title>
+</head>
+<body>
+    <h1>Send Message</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Recipient Username:</label><input type="text" name="recipient"><br>
+        <label>Subject:</label><input type="text" name="subject"><br>
+        <label>Body:</label><textarea name="body"></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+    <a href="{% url 'inbox' %}">Back to Inbox</a>
+</body>
+</html>

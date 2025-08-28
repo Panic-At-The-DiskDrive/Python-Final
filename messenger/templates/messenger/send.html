@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Mensaje</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Enviar Mensaje</h1>
+            <nav>
+                <a href="{% url 'home' %}">Inicio</a> |
+                <a href="{% url 'inbox' %}">Bandeja</a> |
+                <a href="{% url 'profile' %}">Mi cuenta</a> |
+                <a href="{% url 'logout' %}">Salir</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="send-message">
+                <h2>Nuevo Mensaje</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {% now "Y" %} Beru Gaming</p>
+        </footer>
+    </div>
+</body>
+</html>

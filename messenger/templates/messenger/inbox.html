@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandeja de Mensajes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bandeja de {{ user.username }}</h1>
+            <nav>
+                <a href="{% url 'home' %}">Inicio</a> |
+                <a href="{% url 'send_message' %}">Enviar mensaje</a> |
+                <a href="{% url 'profile' %}">Mi cuenta</a> |
+                <a href="{% url 'logout' %}">Salir</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="messages">
+                <h2>Mensajes Recibidos</h2>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>
+                                <strong>De:</strong> {{ message.sender.username }} <br>
+                                <strong>Mensaje:</strong> {{ message.body }} <br>
+                                <strong>Fecha:</strong> {{ message.created_at|date:"d/m/Y H:i" }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No tienes mensajes.</p>
+                {% endif %}
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {% now "Y" %} Beru Gaming</p>
+        </footer>
+    </div>
+</body>
+</html>
+

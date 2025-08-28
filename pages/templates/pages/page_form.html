@@ -1,0 +1,14 @@
+{% extends 'games/base.html' %}
+
+{% block title %}Editar About Me{% endblock %}
+
+{% block content %}
+<h1>Editar About Me</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'about_page' %}">Cancelar</a>
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends 'games/base.html' %}
+
+{% block title %}Editar Juego{% endblock %}
+
+{% block content %}
+<h1>Editar Juego</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+        <div>
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+            {{ field.errors }}
+            {{ field }}
+        </div>
+    {% endfor %}
+
+    {% if form.instance.image %}
+        <div>
+            <p>Imagen actual:</p>
+            <img src="{{ form.instance.image.url }}" alt="{{ form.instance.title }}" style="max-width: 200px; max-height: 200px;">
+        </div>
+    {% endif %}
+
+    <button type="submit">Actualizar Juego</button>
+</form>
+
+<a href="{% url 'game_detail' pk=form.instance.pk %}">Cancelar</a>
+{% endblock %}

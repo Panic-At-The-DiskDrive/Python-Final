@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>{{ game }}</title></head>
+<body>
+  <h1>{{ game }}</h1>
+  {% if game.description %}<p>{{ game.description }}</p>{% endif %}
+  <p><a href="{% url 'list_games' %}">Volver al listado</a></p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'games/base.html' %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+<h3>{{ page.subtitle }}</h3>
+<p>Por {{ page.author }} — {{ page.created_at|date:"d/m/Y H:i" }}</p>
+<img src="{{ page.image.url }}" alt="{{ page.title }}" style="max-width:400px">
+<div>{{ page.body|safe }}</div>
+
+{% if user.is_staff %}
+  <p>
+    <a href="{% url 'page_update' page.pk %}">Editar</a> |
+    <a href="{% url 'page_delete' page.pk %}">Borrar</a>
+  </p>
+{% endif %}
+{% endblock %}

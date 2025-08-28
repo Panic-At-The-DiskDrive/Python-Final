@@ -1,0 +1,31 @@
+{% extends 'games/base.html' %}
+
+{% block title %}Inicio - Beru Gaming{% endblock %}
+
+{% block content %}
+<h2>Últimos juegos</h2>
+
+{% if latest_games %}
+  <ul>
+    {% for game in latest_games %}
+      <li>
+        <strong>{{ game.title }}</strong> - {{ game.genre }} - {{ game.developer.name }} - {{ game.platform.name }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No hay juegos disponibles.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+  <section style="margin-top:20px;">
+    <h2>Mensajes</h2>
+    <p>
+      <a href="{% url 'messenger_inbox' %}">Ir a la bandeja de entrada</a> |
+      <a href="{% url 'messenger_send' %}">Enviar un mensaje</a>
+    </p>
+  </section>
+{% endif %}
+{% endblock %}
+
+

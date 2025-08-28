@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Beru Gaming - {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Inicio</a> |
+        <a href="{% url 'list_games' %}">Juegos</a> |
+        <a href="{% url 'about_page' %}">About Me</a> |
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_game' %}">Agregar Juego</a> |
+            <a href="{% url 'add_developer' %}">Agregar Desarrollador</a> |
+            <a href="{% url 'add_platform' %}">Agregar Plataforma</a> |
+            <a href="{% url 'profile' %}">Perfil</a> |
+            <a href="{% url 'inbox' %}">Mensajes</a> |
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="background:none; border:none; padding:0; cursor:pointer; color:blue; text-decoration:underline;">
+                    Cerrar sesión
+                </button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Iniciar sesión</a> |
+            <a href="{% url 'signup' %}">Registrarse</a>
+        {% endif %}
+    </nav>
+    <hr />
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+
