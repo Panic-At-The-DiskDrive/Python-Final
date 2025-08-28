@@ -4,12 +4,12 @@
 
 1. **Clonar el repositorio**  
    ```bash
-   git clone https://github.com/Panic-At-The-DiskDrive/Python-Entrega_Final
+   git clone https://github.com/Panic-At-The-DiskDrive/Python-Final.git
    ```
 
 2. **Entrar a la carpeta del proyecto**  
    ```bash
-   cd Python-Entrega_Final
+   cd Python-Final
    ```
 
 3. **Crear y activar entorno virtual**  
